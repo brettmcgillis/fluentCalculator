@@ -2,7 +2,7 @@
 This repository contains code for a calculator class that provides a fluent api, and is written in Ruby.
 
 ### Requirements
-> The goal is to implement a simple calculator which uses fluent syntax:
+> The goal is to implement a simple calculator which uses fluent syntax
 > There are only four operations that are supported (plus, minus, times, divided_by) and 10 digits (zero, one, two, three, four, five, six, seven, eight, nine).
 > Each calculation consists of one operation only and will return an integer.
 
