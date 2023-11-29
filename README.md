@@ -18,6 +18,30 @@ cd fluentCalculator
 bundle install
 ```
 
+## Using FluentCalculator
+The FluentCalculator class allows consumers to perform basic arithmetic using fluent syntax. Functions are provided for inputing integer values between 0 and 9. Functions are provided to allow the consumer to add, subtract, multiply and divide. When performing division integer values are returned. 
+
+``` ruby
+# Arithmetic
+puts FluentCalculator.new # 0
+puts FluentCalculator.new.one.plus.two # 3
+puts FluentCalculator.new.three.plus.four # 7
+puts FluentCalculator.new.five.minus.six # -1
+puts FluentCalculator.new.seven.times.eight # 56
+puts FluentCalculator.new.nine.divided_by.two # 4
+
+# Equality
+calc = FluentCalculator.new.one.times.five
+calc == 5 # true
+calc == 5.0 # true
+calc == "5" # true
+calc == FluentCalculator.new.two.plus.three # true
+
+#Errors
+FluentCalculator.new.five.divided_by.zero # Raises ZeroDivisionError
+```
+
+
 ## Testing
 This project uses RSpec for testing. To run tests:
 
