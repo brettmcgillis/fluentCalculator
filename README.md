@@ -30,11 +30,11 @@ puts FluentCalculator.new.seven.times.eight # 56
 puts FluentCalculator.new.nine.divided_by.two # 4
 
 # Equality
-FluentCalculator.new.one.times.five == 5 # true
-FluentCalculator.new.one.times.five == FluentCalculator.new.two.plus.three # true
+puts FluentCalculator.new.one.times.five == 5 # true
+puts FluentCalculator.new.one.times.five == FluentCalculator.new.two.plus.three # true
 
 #Errors
-FluentCalculator.new.five.divided_by.zero # Raises ZeroDivisionError
+puts FluentCalculator.new.five.divided_by.zero # Raises ZeroDivisionError
 ```
 
 
