@@ -14,7 +14,7 @@ This repository contains code for a calculator class that provides a fluent api,
 > Each calculation consists of one operation only and will return an integer.
 
 #### Assumptions
-- This code will be used in an environment with other specialized calculator classes and should be named for precision.
+- This class will be used in an environment with other specialized calculator classes and should be named for precision.
 - Additional arithmetic operations and/or operands may be required in future iterations.
 - Future iterations may allow multiple operations to be performed but will not retroactively apply appropriate orders of operations.  
 
