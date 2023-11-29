@@ -13,7 +13,7 @@ This repository contains code for a calculator class that provides a fluent api,
 ## Getting Started
 Get started by navigating to the project directory and installing the requisite gems.
 
-```
+```bash
 cd fluentCalculator
 bundle install
 ```
@@ -45,7 +45,7 @@ FluentCalculator.new.five.divided_by.zero # Raises ZeroDivisionError
 ## Testing
 This project uses RSpec for testing. To run tests:
 
-```
+```bash
 cd fluentCalculator
 bundle exec rspec
 ```
