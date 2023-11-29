@@ -1,12 +1,20 @@
+
 # fluentCalculator
 This repository contains code for a calculator class that provides a fluent api, and is written in Ruby.
 
 ### Requirements
-> The goal is to implement a simple calculator which uses fluent syntax
+> The goal is to implement a simple calculator which uses fluent syntax:
+> ```
+> Calc.new.one.plus.two (result: 3)
+> Calc.new.five.minus.six (result: -1)
+> Calc.new.seven.times.two (result: 14)
+> Calc.new.nine.divided_by.three (result: 3)
+> ```
 > There are only four operations that are supported (plus, minus, times, divided_by) and 10 digits (zero, one, two, three, four, five, six, seven, eight, nine).
 > Each calculation consists of one operation only and will return an integer.
 
 #### Assumptions
+- This code will be used in an environment with other specialized calculator classes and should be named for precision.
 - Additional arithmetic operations and/or operands may be required in future iterations.
 - Future iterations may allow multiple operations to be performed but will not retroactively apply appropriate orders of operations.  
 
