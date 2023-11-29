@@ -23,7 +23,6 @@ The FluentCalculator class allows consumers to perform basic arithmetic using fl
 
 ``` ruby
 # Arithmetic
-puts FluentCalculator.new # 0
 puts FluentCalculator.new.one.plus.two # 3
 puts FluentCalculator.new.three.plus.four # 7
 puts FluentCalculator.new.five.minus.six # -1
@@ -31,11 +30,8 @@ puts FluentCalculator.new.seven.times.eight # 56
 puts FluentCalculator.new.nine.divided_by.two # 4
 
 # Equality
-calc = FluentCalculator.new.one.times.five
-calc == 5 # true
-calc == 5.0 # true
-calc == "5" # true
-calc == FluentCalculator.new.two.plus.three # true
+FluentCalculator.new.one.times.five == 5 # true
+FluentCalculator.new.one.times.five == FluentCalculator.new.two.plus.three # true
 
 #Errors
 FluentCalculator.new.five.divided_by.zero # Raises ZeroDivisionError
