@@ -18,8 +18,8 @@ class FluentCalculator
         'minus': :-,
         'times': :*,
         'divided_by': :/,
-        # 'modulus': :%,
-        # 'to_the_power_of': :**
+        'modulus': :%,
+        'to_the_power_of': :**
     }.freeze
 
     def initialize
@@ -28,20 +28,22 @@ class FluentCalculator
         create_operation_methods
     end
 
-    def ==(other)
-        case other
-        when FluentCalculator, String
-            return self.to_s == other.to_s
-        when Integer, Numeric
-            return @result == other
-        else 
-            return false
-        end
-    end
-
-    def to_s
-        return @result.to_s
-    end
+    # To allow users to perform multiple operations in succession
+    # uncomment the equality, and to string overrides below.
+    # def ==(other)
+    #     case other
+    #     when FluentCalculator, String
+    #         return self.to_s == other.to_s
+    #     when Integer, Numeric
+    #         return @result == other
+    #     else 
+    #         return false
+    #     end
+    # end
+    #
+    # def to_s
+    #     return @result.to_s
+    # end
     
     private
 
@@ -53,8 +55,12 @@ class FluentCalculator
                     return self
                 else
                     @result = @result.send(@operation, value)
-                    @operation = nil
-                    return self
+                    return @result
+                    # To allow users to perform multiple operations in succession
+                    # (ex. FluentCalculator.new.one.plus.two.plus.three.etc... )
+                    # remove the return statement above and uncomment the lines below.
+                    # @operation = nil
+                    # return self
                 end
             end
         end
