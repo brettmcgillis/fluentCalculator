@@ -36,9 +36,18 @@ puts FluentCalculator.new.three.plus.four # 7
 puts FluentCalculator.new.five.minus.six # -1
 puts FluentCalculator.new.seven.times.eight # 56
 puts FluentCalculator.new.nine.divided_by.two # 4
+puts FluentCalculator.new.5.modulus.two # 1
+puts FluentCalculator.new.5.to_the_power_of.two # 2
+
+# Multiple Operations
+puts FluentCalculator.new.one.plus.two.times.three # 6 ((1 + 2) * 3)
+puts FluentCalculator.new.two.times.two.times.two.times.two # 16 (((2 * 2) * 2) * 2)
 
 # Equality
 puts FluentCalculator.new.one.times.five == 5 # true
+puts FluentCalculator.new.one.times.five == 5.0 # true
+puts FluentCalculator.new.one.times.five == 5.1 # false
+puts FluentCalculator.new.one.times.five == "5" # true
 puts FluentCalculator.new.one.times.five == FluentCalculator.new.two.plus.three # true
 
 #Errors

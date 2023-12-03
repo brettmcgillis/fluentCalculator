@@ -2,9 +2,7 @@ require_relative '../fluent_calculator'
 
 describe FluentCalculator do
   describe 'initialization' do
-    # This test is disabled untill the class allows multiple calculations
-    # AND the class overrides the equality operator.
-    xit 'has a default value of 0' do
+    it 'has a default value of 0' do
       expect(FluentCalculator.new).to eq(0)
     end
 
@@ -15,16 +13,8 @@ describe FluentCalculator do
       end
     end
 
-    [:+, :-, :*, :/].each do |operator|
+    [:+, :-, :*, :/, :**, :%].each do |operator|
       it "includes an operation method for the operator #{operator}" do
-        operation, _ = FluentCalculator::OPERATIONS.to_a.find { |_, op| op == operator }
-        expect(FluentCalculator.new.respond_to?(operation)).to be(true)
-      end
-    end
-
-    [:**, :%].each do |operator|
-      # This test is disabled until exponentiation and modulus are implemented in the class
-      xit "includes an operation method for the operator #{operator}" do
         operation, _ = FluentCalculator::OPERATIONS.to_a.find { |_, op| op == operator }
         expect(FluentCalculator.new.respond_to?(operation)).to be(true)
       end
@@ -52,19 +42,22 @@ describe FluentCalculator do
       expect { FluentCalculator.new.nine.divided_by.zero }.to raise_error(ZeroDivisionError)
     end
 
-    # This test is disabled until modulus is implemented in the class
-    xit 'returns the remainder of division of the left operand by the right operand' do
+    it 'returns the remainder of division of the left operand by the right operand' do
       expect(FluentCalculator.new.five.modulus.two).to eq(1)
     end
 
-    # This test is disabled until modulus is implemented in the class
-    xit 'raises ZeroDivisionError when using modulus and dividing by zero' do
+    it 'raises ZeroDivisionError when using modulus and dividing by zero' do
       expect { FluentCalculator.new.nine.modulus.zero }.to raise_error(ZeroDivisionError)
     end
 
-    # This test is disabled until exponentiation is implemented in the class
-    xit 'returns the left operand to the power of the right operand' do
+    it 'returns the left operand to the power of the right operand' do
       expect(FluentCalculator.new.five.to_the_power_of.two).to eq(25)
+    end
+
+    it 'performs multiple operations' do
+      expect(FluentCalculator.new.one.plus.two.plus.three).to eq(6)
+      expect(FluentCalculator.new.two.times.two.times.two).to eq(8)
+      expect(FluentCalculator.new.eight.divided_by.two.times.four).to eq(16)
     end
   end
 
@@ -83,8 +76,7 @@ describe FluentCalculator do
       { 'name': 'adds the right operand to the left operand', 'operator': :+, },
       { 'name': 'subtracts the right operand from the left operand', 'operator': :-, },
       { 'name': 'multiplies the left operand by the right operand', 'operator': :*, },
-      # This test is disabled until exponentiation is implemented in the class
-      # { 'name': 'raises the left operand to the power of the right operand', 'operator': :**, },
+      { 'name': 'raises the left operand to the power of the right operand', 'operator': :**, },
     ].each do |test_case|
       it "#{test_case[:name]}" do
         left_op, left_value = random_operand
@@ -92,14 +84,13 @@ describe FluentCalculator do
         operation_name, operator = operation(test_case[:operator])
 
         expected = left_value.send(operator, right_value)
-        expect(FluentCalculator.new.send(left_op).send(operation_name).send(right_op)).to be(expected)
+        expect(FluentCalculator.new.send(left_op).send(operation_name).send(right_op)).to eq(expected)
       end
     end
 
     [
       { 'name': 'divides the left operand by the right operand', 'operator': :/, },
-      # This test is disabled until modulus is implemented in the class
-      # { 'name': 'returns the remainder of division of the left operand by the right operand', 'operator': :%, },
+      { 'name': 'returns the remainder of division of the left operand by the right operand', 'operator': :%, },
     ].each do |test_case|
       it "#{test_case[:name]}" do
         left_op, left_value = random_operand
@@ -107,14 +98,13 @@ describe FluentCalculator do
         operation_name, operator = operation(test_case[:operator])
 
         expected = left_value.send(operator, right_value)
-        expect(FluentCalculator.new.send(left_op).send(operation_name).send(right_op)).to be(expected)
+        expect(FluentCalculator.new.send(left_op).send(operation_name).send(right_op)).to eq(expected)
       end
     end
 
     [
       { 'name': 'raises ZeroDivisionError when dividing by zero', 'operator': :/, },
-      # This test is disabled until modulus is implemented in the class
-      # { 'name': 'raises ZeroDivisionError when using modulus and dividing by ', 'operator': :%, },
+      { 'name': 'raises ZeroDivisionError when using modulus and dividing by ', 'operator': :%, },
     ].each do |test_case|
       it "#{test_case[:name]}" do
         left_op, _ = random_operand
@@ -123,12 +113,9 @@ describe FluentCalculator do
         expect { FluentCalculator.new.send(left_op).send(operation_name).zero }.to raise_error(ZeroDivisionError)
       end
     end
-   
   end
 
-  # This section has been disabled until the class allows consumers to perform multiple 
-  # operations AND the class overrides the equality operator
-  xdescribe 'equality comparison' do
+  describe 'equality comparison' do
     let(:calc) { FluentCalculator.new.three.times.four }
 
     it 'can be compared to other calculators' do
@@ -152,5 +139,4 @@ describe FluentCalculator do
       expect(calc == ['12']).to be(false)
     end
   end
-
 end
