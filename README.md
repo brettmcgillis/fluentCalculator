@@ -52,6 +52,7 @@ puts FluentCalculator.new.one.times.five == FluentCalculator.new.two.plus.three 
 
 #Errors
 puts FluentCalculator.new.five.divided_by.zero # Raises ZeroDivisionError
+puts FluentCalculator.new.nine.modulus.zero # Raises ZeroDivisionError
 ```
 
 
